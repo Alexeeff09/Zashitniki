@@ -1,0 +1,83 @@
+﻿<Window x:Class="Zashitniki.Windows.EmployessList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zashitniki.Windows"
+        mc:Ignorable="d"
+        Title="EmployessList" Height="450" Width="800">
+    <Window.Resources>
+        <!-- Стиль для DataGrid -->
+        <Style TargetType="DataGrid">
+            <!-- Оформление строк -->
+            <Setter Property="RowBackground" Value="#8fb996"/>
+            <Setter Property="AlternatingRowBackground" Value="#8fb996"/>
+            <Setter Property="RowHeight" Value="50"/>
+
+            <!-- Оформление заголовков столбцов -->
+
+            <Setter Property="ColumnHeaderHeight" Value="35"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="#8fb996"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Оформление ячеек -->
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#8fb996"/>
+        </Grid.Background>
+
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Employees}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <!-- Employe columns -->
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" />
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirthday, StringFormat={}\{0:dd.MM.yyyy\}}" />
+                <DataGridTextColumn Header="Должность" Binding="{Binding PostName}" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Phone}" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Назад" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Height="28">
+        <Button.Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#00573D"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <!-- Эффект при наведении -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF0059B3"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Button.Style>
+        </Button>
+    </Grid>
+</Window>

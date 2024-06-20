@@ -1,0 +1,63 @@
+﻿<Window x:Class="Zashitniki.Windows.Authorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zashitniki.Windows"
+        mc:Ignorable="d"
+        Title="Authorization" Height="450" Width="800">
+    
+
+    <Grid Background="#8fb996">
+
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Авторизация"
+                       FontSize="36"
+                       HorizontalAlignment="Center"
+                       Margin="0 10 0 0"
+                       FontFamily="Corbel Light" FontWeight="Bold" Height="41"/>
+
+            <TextBox x:Name="TbLogin"
+                     Text="Введите логин"
+                     BorderBrush="#00573D"
+                     BorderThickness="2"
+                     FontSize="18"
+                     Width="200"
+                     Height="30"
+                     Margin="0 40 0 0" FontFamily="Bahnschrift"
+                     GotFocus="TextBox_GotFocus"
+         LostFocus="TextBox_LostFocus"
+         Foreground="Gray"/>
+
+            <TextBox x:Name="PbPassword"
+         Text="Введите пароль"
+         BorderBrush="#00573D"
+         BorderThickness="2"
+         FontSize="18"
+         Width="200"
+         Height="30"
+         Margin="0 8 0 0"
+         FontFamily="Bahnschrift"
+         GotFocus="PbPassword_GotFocus"
+         LostFocus="PbPassword_LostFocus"
+                     Foreground="Gray"/>
+            
+
+            <Button x:Name="BtnSignIn" 
+                    Content="Войти"
+                    FontSize="18"
+                    Width="150"
+                    Height="40"
+                    Margin="0 30 0 0"
+                    Click="BtnSignIn_Click" Background="#00573D"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Window>

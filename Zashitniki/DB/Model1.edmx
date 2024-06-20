@@ -1,0 +1,1015 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ZashitnikiModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Award">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AwardTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AwardVeteran">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="AwardID" />
+          </Key>
+          <Property Name="VeteranID" Type="int" Nullable="false" />
+          <Property Name="AwardID" Type="int" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataOfBirthday" Type="date" Nullable="false" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Discription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EventVeteran">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="VeteranID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="EmployeID" Type="int" Nullable="false" />
+          <Property Name="DateOfEvent" Type="date" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MilitaryAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="YearStart" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="YearEnd" Type="nchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="MilitaryActionMember">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MilitaryActionID" Type="int" Nullable="false" />
+          <Property Name="VeteranID" Type="int" Nullable="false" />
+          <Property Name="DataStart" Type="date" Nullable="false" />
+          <Property Name="DataEnd" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MilitaryRank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PsychologicalSupport">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="VeteranID" Type="int" Nullable="false" />
+          <Property Name="DateSession" Type="date" Nullable="false" />
+          <Property Name="SessionTheme" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmployeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleService" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialServiceVeteran">
+          <Key>
+            <PropertyRef Name="SocialServiceID" />
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="SocialServiceID" Type="int" Nullable="false" />
+          <Property Name="VeteranID" Type="int" Nullable="false" />
+          <Property Name="EmployeID" Type="int" Nullable="false" />
+          <Property Name="DateOfProvision" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Veteran">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataOfBirthday" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MilitaryRankID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AwardVeteran_Award">
+          <End Role="Award" Type="Self.Award" Multiplicity="1" />
+          <End Role="AwardVeteran" Type="Self.AwardVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Award">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AwardVeteran">
+              <PropertyRef Name="AwardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AwardVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="AwardVeteran" Type="Self.AwardVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AwardVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employe_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MilitaryActionMember_MilitaryAction">
+          <End Role="MilitaryAction" Type="Self.MilitaryAction" Multiplicity="1" />
+          <End Role="MilitaryActionMember" Type="Self.MilitaryActionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryAction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MilitaryActionMember">
+              <PropertyRef Name="MilitaryActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MilitaryActionMember_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="MilitaryActionMember" Type="Self.MilitaryActionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MilitaryActionMember">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsychologicalSupport_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="PsychologicalSupport" Type="Self.PsychologicalSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsychologicalSupport">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsychologicalSupport_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="PsychologicalSupport" Type="Self.PsychologicalSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsychologicalSupport">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_SocialService">
+          <End Role="SocialService" Type="Self.SocialService" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="SocialServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran_MilitaryRank">
+          <End Role="MilitaryRank" Type="Self.MilitaryRank" Multiplicity="1" />
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryRank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Veteran">
+              <PropertyRef Name="MilitaryRankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ZashitnikiModelContainer">
+          <EntitySet Name="Award" EntityType="Self.Award" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AwardVeteran" EntityType="Self.AwardVeteran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventVeteran" EntityType="Self.EventVeteran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilitaryAction" EntityType="Self.MilitaryAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilitaryActionMember" EntityType="Self.MilitaryActionMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilitaryRank" EntityType="Self.MilitaryRank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PsychologicalSupport" EntityType="Self.PsychologicalSupport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialService" EntityType="Self.SocialService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialServiceVeteran" EntityType="Self.SocialServiceVeteran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veteran" EntityType="Self.Veteran" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AwardVeteran_Award" Association="Self.FK_AwardVeteran_Award">
+            <End Role="Award" EntitySet="Award" />
+            <End Role="AwardVeteran" EntitySet="AwardVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AwardVeteran_Veteran" Association="Self.FK_AwardVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="AwardVeteran" EntitySet="AwardVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_Post" Association="Self.FK_Employe_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Employe" Association="Self.FK_EventVeteran_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Event" Association="Self.FK_EventVeteran_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Veteran" Association="Self.FK_EventVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Employe" Association="Self.FK_Manager_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MilitaryActionMember_MilitaryAction" Association="Self.FK_MilitaryActionMember_MilitaryAction">
+            <End Role="MilitaryAction" EntitySet="MilitaryAction" />
+            <End Role="MilitaryActionMember" EntitySet="MilitaryActionMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MilitaryActionMember_Veteran" Association="Self.FK_MilitaryActionMember_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="MilitaryActionMember" EntitySet="MilitaryActionMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsychologicalSupport_Employe" Association="Self.FK_PsychologicalSupport_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="PsychologicalSupport" EntitySet="PsychologicalSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsychologicalSupport_Veteran" Association="Self.FK_PsychologicalSupport_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="PsychologicalSupport" EntitySet="PsychologicalSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_Employe" Association="Self.FK_SocialServiceVeteran_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_SocialService" Association="Self.FK_SocialServiceVeteran_SocialService">
+            <End Role="SocialService" EntitySet="SocialService" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_Veteran" Association="Self.FK_SocialServiceVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran_MilitaryRank" Association="Self.FK_Veteran_MilitaryRank">
+            <End Role="MilitaryRank" EntitySet="MilitaryRank" />
+            <End Role="Veteran" EntitySet="Veteran" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZashitnikiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Award">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AwardTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AwardVeteran" Relationship="Self.FK_AwardVeteran_Award" FromRole="Award" ToRole="AwardVeteran" />
+        </EntityType>
+        <EntityType Name="AwardVeteran">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="AwardID" />
+          </Key>
+          <Property Name="VeteranID" Type="Int32" Nullable="false" />
+          <Property Name="AwardID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Award" Relationship="Self.FK_AwardVeteran_Award" FromRole="AwardVeteran" ToRole="Award" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_AwardVeteran_Veteran" FromRole="AwardVeteran" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataOfBirthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Employe_Post" FromRole="Employe" ToRole="Post" />
+          <NavigationProperty Name="EventVeteran" Relationship="Self.FK_EventVeteran_Employe" FromRole="Employe" ToRole="EventVeteran" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_Employe" FromRole="Employe" ToRole="Manager" />
+          <NavigationProperty Name="PsychologicalSupport" Relationship="Self.FK_PsychologicalSupport_Employe" FromRole="Employe" ToRole="PsychologicalSupport" />
+          <NavigationProperty Name="SocialServiceVeteran" Relationship="Self.FK_SocialServiceVeteran_Employe" FromRole="Employe" ToRole="SocialServiceVeteran" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EventVeteran" Relationship="Self.FK_EventVeteran_Event" FromRole="Event" ToRole="EventVeteran" />
+        </EntityType>
+        <EntityType Name="EventVeteran">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="VeteranID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfEvent" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK_EventVeteran_Employe" FromRole="EventVeteran" ToRole="Employe" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_EventVeteran_Event" FromRole="EventVeteran" ToRole="Event" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_EventVeteran_Veteran" FromRole="EventVeteran" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK_Manager_Employe" FromRole="Manager" ToRole="Employe" />
+        </EntityType>
+        <EntityType Name="MilitaryAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YearStart" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="YearEnd" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MilitaryActionMember" Relationship="Self.FK_MilitaryActionMember_MilitaryAction" FromRole="MilitaryAction" ToRole="MilitaryActionMember" />
+        </EntityType>
+        <EntityType Name="MilitaryActionMember">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MilitaryActionID" Type="Int32" Nullable="false" />
+          <Property Name="VeteranID" Type="Int32" Nullable="false" />
+          <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="MilitaryAction" Relationship="Self.FK_MilitaryActionMember_MilitaryAction" FromRole="MilitaryActionMember" ToRole="MilitaryAction" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_MilitaryActionMember_Veteran" FromRole="MilitaryActionMember" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="MilitaryRank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_Veteran_MilitaryRank" FromRole="MilitaryRank" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK_Employe_Post" FromRole="Post" ToRole="Employe" />
+        </EntityType>
+        <EntityType Name="PsychologicalSupport">
+          <Key>
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="VeteranID" Type="Int32" Nullable="false" />
+          <Property Name="DateSession" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SessionTheme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK_PsychologicalSupport_Employe" FromRole="PsychologicalSupport" ToRole="Employe" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_PsychologicalSupport_Veteran" FromRole="PsychologicalSupport" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="SocialService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleService" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SocialServiceVeteran" Relationship="Self.FK_SocialServiceVeteran_SocialService" FromRole="SocialService" ToRole="SocialServiceVeteran" />
+        </EntityType>
+        <EntityType Name="SocialServiceVeteran">
+          <Key>
+            <PropertyRef Name="SocialServiceID" />
+            <PropertyRef Name="VeteranID" />
+            <PropertyRef Name="EmployeID" />
+          </Key>
+          <Property Name="SocialServiceID" Type="Int32" Nullable="false" />
+          <Property Name="VeteranID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfProvision" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK_SocialServiceVeteran_Employe" FromRole="SocialServiceVeteran" ToRole="Employe" />
+          <NavigationProperty Name="SocialService" Relationship="Self.FK_SocialServiceVeteran_SocialService" FromRole="SocialServiceVeteran" ToRole="SocialService" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_SocialServiceVeteran_Veteran" FromRole="SocialServiceVeteran" ToRole="Veteran" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Veteran">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataOfBirthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MilitaryRankID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AwardVeteran" Relationship="Self.FK_AwardVeteran_Veteran" FromRole="Veteran" ToRole="AwardVeteran" />
+          <NavigationProperty Name="EventVeteran" Relationship="Self.FK_EventVeteran_Veteran" FromRole="Veteran" ToRole="EventVeteran" />
+          <NavigationProperty Name="MilitaryActionMember" Relationship="Self.FK_MilitaryActionMember_Veteran" FromRole="Veteran" ToRole="MilitaryActionMember" />
+          <NavigationProperty Name="MilitaryRank" Relationship="Self.FK_Veteran_MilitaryRank" FromRole="Veteran" ToRole="MilitaryRank" />
+          <NavigationProperty Name="PsychologicalSupport" Relationship="Self.FK_PsychologicalSupport_Veteran" FromRole="Veteran" ToRole="PsychologicalSupport" />
+          <NavigationProperty Name="SocialServiceVeteran" Relationship="Self.FK_SocialServiceVeteran_Veteran" FromRole="Veteran" ToRole="SocialServiceVeteran" />
+        </EntityType>
+        <Association Name="FK_AwardVeteran_Award">
+          <End Role="Award" Type="Self.Award" Multiplicity="1" />
+          <End Role="AwardVeteran" Type="Self.AwardVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Award">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AwardVeteran">
+              <PropertyRef Name="AwardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AwardVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="AwardVeteran" Type="Self.AwardVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AwardVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employe_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsychologicalSupport_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="PsychologicalSupport" Type="Self.PsychologicalSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsychologicalSupport">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="EmployeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="EventVeteran" Type="Self.EventVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EventVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MilitaryActionMember_MilitaryAction">
+          <End Role="MilitaryAction" Type="Self.MilitaryAction" Multiplicity="1" />
+          <End Role="MilitaryActionMember" Type="Self.MilitaryActionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryAction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MilitaryActionMember">
+              <PropertyRef Name="MilitaryActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MilitaryActionMember_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="MilitaryActionMember" Type="Self.MilitaryActionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MilitaryActionMember">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran_MilitaryRank">
+          <End Role="MilitaryRank" Type="Self.MilitaryRank" Multiplicity="1" />
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryRank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Veteran">
+              <PropertyRef Name="MilitaryRankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsychologicalSupport_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="PsychologicalSupport" Type="Self.PsychologicalSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsychologicalSupport">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_SocialService">
+          <End Role="SocialService" Type="Self.SocialService" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="SocialServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialServiceVeteran_Veteran">
+          <End Role="Veteran" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="SocialServiceVeteran" Type="Self.SocialServiceVeteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veteran">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SocialServiceVeteran">
+              <PropertyRef Name="VeteranID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entitiess" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Award" EntityType="Self.Award" />
+          <EntitySet Name="AwardVeteran" EntityType="Self.AwardVeteran" />
+          <EntitySet Name="Employe" EntityType="Self.Employe" />
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="EventVeteran" EntityType="Self.EventVeteran" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="MilitaryAction" EntityType="Self.MilitaryAction" />
+          <EntitySet Name="MilitaryActionMember" EntityType="Self.MilitaryActionMember" />
+          <EntitySet Name="MilitaryRank" EntityType="Self.MilitaryRank" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="PsychologicalSupport" EntityType="Self.PsychologicalSupport" />
+          <EntitySet Name="SocialService" EntityType="Self.SocialService" />
+          <EntitySet Name="SocialServiceVeteran" EntityType="Self.SocialServiceVeteran" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Veteran" EntityType="Self.Veteran" />
+          <AssociationSet Name="FK_AwardVeteran_Award" Association="Self.FK_AwardVeteran_Award">
+            <End Role="Award" EntitySet="Award" />
+            <End Role="AwardVeteran" EntitySet="AwardVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AwardVeteran_Veteran" Association="Self.FK_AwardVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="AwardVeteran" EntitySet="AwardVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_Post" Association="Self.FK_Employe_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Employe" Association="Self.FK_EventVeteran_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Employe" Association="Self.FK_Manager_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsychologicalSupport_Employe" Association="Self.FK_PsychologicalSupport_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="PsychologicalSupport" EntitySet="PsychologicalSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_Employe" Association="Self.FK_SocialServiceVeteran_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Event" Association="Self.FK_EventVeteran_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVeteran_Veteran" Association="Self.FK_EventVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="EventVeteran" EntitySet="EventVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MilitaryActionMember_MilitaryAction" Association="Self.FK_MilitaryActionMember_MilitaryAction">
+            <End Role="MilitaryAction" EntitySet="MilitaryAction" />
+            <End Role="MilitaryActionMember" EntitySet="MilitaryActionMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MilitaryActionMember_Veteran" Association="Self.FK_MilitaryActionMember_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="MilitaryActionMember" EntitySet="MilitaryActionMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran_MilitaryRank" Association="Self.FK_Veteran_MilitaryRank">
+            <End Role="MilitaryRank" EntitySet="MilitaryRank" />
+            <End Role="Veteran" EntitySet="Veteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsychologicalSupport_Veteran" Association="Self.FK_PsychologicalSupport_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="PsychologicalSupport" EntitySet="PsychologicalSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_SocialService" Association="Self.FK_SocialServiceVeteran_SocialService">
+            <End Role="SocialService" EntitySet="SocialService" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialServiceVeteran_Veteran" Association="Self.FK_SocialServiceVeteran_Veteran">
+            <End Role="Veteran" EntitySet="Veteran" />
+            <End Role="SocialServiceVeteran" EntitySet="SocialServiceVeteran" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ZashitnikiModelContainer" CdmEntityContainer="Entitiess">
+          <EntitySetMapping Name="Award">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Award">
+              <MappingFragment StoreEntitySet="Award">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AwardTitle" ColumnName="AwardTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AwardVeteran">
+            <EntityTypeMapping TypeName="ZashitnikiModel.AwardVeteran">
+              <MappingFragment StoreEntitySet="AwardVeteran">
+                <ScalarProperty Name="VeteranID" ColumnName="VeteranID" />
+                <ScalarProperty Name="AwardID" ColumnName="AwardID" />
+                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employe">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Employe">
+              <MappingFragment StoreEntitySet="Employe">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DataOfBirthday" ColumnName="DataOfBirthday" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventVeteran">
+            <EntityTypeMapping TypeName="ZashitnikiModel.EventVeteran">
+              <MappingFragment StoreEntitySet="EventVeteran">
+                <ScalarProperty Name="VeteranID" ColumnName="VeteranID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EmployeID" ColumnName="EmployeID" />
+                <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeID" ColumnName="EmployeID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilitaryAction">
+            <EntityTypeMapping TypeName="ZashitnikiModel.MilitaryAction">
+              <MappingFragment StoreEntitySet="MilitaryAction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="YearStart" ColumnName="YearStart" />
+                <ScalarProperty Name="YearEnd" ColumnName="YearEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilitaryActionMember">
+            <EntityTypeMapping TypeName="ZashitnikiModel.MilitaryActionMember">
+              <MappingFragment StoreEntitySet="MilitaryActionMember">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MilitaryActionID" ColumnName="MilitaryActionID" />
+                <ScalarProperty Name="VeteranID" ColumnName="VeteranID" />
+                <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+                <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilitaryRank">
+            <EntityTypeMapping TypeName="ZashitnikiModel.MilitaryRank">
+              <MappingFragment StoreEntitySet="MilitaryRank">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PostName" ColumnName="PostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PsychologicalSupport">
+            <EntityTypeMapping TypeName="ZashitnikiModel.PsychologicalSupport">
+              <MappingFragment StoreEntitySet="PsychologicalSupport">
+                <ScalarProperty Name="VeteranID" ColumnName="VeteranID" />
+                <ScalarProperty Name="DateSession" ColumnName="DateSession" />
+                <ScalarProperty Name="SessionTheme" ColumnName="SessionTheme" />
+                <ScalarProperty Name="EmployeID" ColumnName="EmployeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialService">
+            <EntityTypeMapping TypeName="ZashitnikiModel.SocialService">
+              <MappingFragment StoreEntitySet="SocialService">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TitleService" ColumnName="TitleService" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialServiceVeteran">
+            <EntityTypeMapping TypeName="ZashitnikiModel.SocialServiceVeteran">
+              <MappingFragment StoreEntitySet="SocialServiceVeteran">
+                <ScalarProperty Name="SocialServiceID" ColumnName="SocialServiceID" />
+                <ScalarProperty Name="VeteranID" ColumnName="VeteranID" />
+                <ScalarProperty Name="EmployeID" ColumnName="EmployeID" />
+                <ScalarProperty Name="DateOfProvision" ColumnName="DateOfProvision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ZashitnikiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veteran">
+            <EntityTypeMapping TypeName="ZashitnikiModel.Veteran">
+              <MappingFragment StoreEntitySet="Veteran">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DataOfBirthday" ColumnName="DataOfBirthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="MilitaryRankID" ColumnName="MilitaryRankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
